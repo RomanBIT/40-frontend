@@ -18,6 +18,7 @@
   "author": "Roman L",
   "license": "MIT",
   "devDependencies": {
-    "dead-server": "^1.0.6"
+    "dead-server": "^1.0.6",
+    "nodemon": "^2.0.16"
   }
 }
