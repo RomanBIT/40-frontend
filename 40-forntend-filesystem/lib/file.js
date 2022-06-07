@@ -1,9 +1,19 @@
+import fs from 'fs/promises'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
 // async / await
 // dokumentacija
 // try / catch
 
 
 const file = {}
+
+file.fullPath = (dir, fileName) => {
+    const __filename = fileURLToPath(import.meta.url)
+    const __dirname = path.dirname(__filename)
+    return path.join(__dirname, '../data', dir, fileName)
+}
 
 // dir - folderis kur bus failas
 // fileName - failo pavadinimas su pletyniu
@@ -20,12 +30,21 @@ const file = {}
 file.create = (dir, fileName, content) => {
     console.log('Kuriamas failas..');
 }
-file.read = () => {
-    console.log('Skaitomas failas..');
+
+file.read = async (dir, fileName) => {
+    try {
+        const filePath = 'data/' + dir + '/' + fileName
+        const fileContent = await fs.readFile(filePath, 'utf-8')
+        return fileContent
+    } catch (error) {
+        return 'Ups..FALSE bruh'
+    }
 }
+
 file.update = () => {
     console.log('Atnaujinamas failas..');
 }
+
 file.delete = () => {
     console.log('Trinamas failas..');
 }
